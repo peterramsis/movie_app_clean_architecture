@@ -1,3 +1,5 @@
+import 'package:dartz/dartz.dart';
+import 'package:movies_clean/core/error/failure.dart';
 import 'package:movies_clean/movies/domain/enities/movie.dart';
 import 'package:movies_clean/movies/domain/repository/base_movie_repository.dart';
 
@@ -6,7 +8,7 @@ class GetTopRatedMovieUseCase{
   GetTopRatedMovieUseCase(this.baseMovieRepository);
 
 
-  Future<List<Movie>> execute() async{
+  Future<Either<ServerFailure, List<Movie>>> execute() async{
     return await baseMovieRepository.getTopRatedMovies();
   }
 }
