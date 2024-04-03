@@ -8,7 +8,7 @@ class GetNowPlayingUseCase{
   GetNowPlayingUseCase(this.baseMovieRepository);
 
 
-  Future<Either<ServerFailure, List<Movie>>> execute() async{
+  Future<Either<Failure, List<Movie>>> execute() async{
       return await baseMovieRepository.getNowPlaying();
   }
 }

@@ -15,12 +15,18 @@ class MovieBaseRemoteDataSource extends BaseRemoteDataSource{
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async
   {
+
     final response = await Dio().get(AppConstance.getPlayingMovie);
+    print("-------------");
+      print(response.statusCode);
+
     if(response.statusCode == 200)
     {
         return List<MovieModel>.from((response.data["results"] as List).map((element) => MovieModel.fromJson(element))) ;
     }else{
-        return throw ServerException(errorNetworkModel: ErrorNetworkModel.fromJson(response.data));
+        throw ServerException(
+          errorMessageModel: ErrorMessageModel.fromJson(response.data)
+        );
     }
   }
 
@@ -31,7 +37,9 @@ class MovieBaseRemoteDataSource extends BaseRemoteDataSource{
     {
       return List<MovieModel>.from((response.data["results"] as List).map((element) => MovieModel.fromJson(element))) ;
     }else{
-      return throw ServerException(errorNetworkModel: ErrorNetworkModel.fromJson(response.data));
+      throw ServerException(
+          errorMessageModel: ErrorMessageModel.fromJson(response.data)
+      );
     }
   }
 
@@ -42,7 +50,9 @@ class MovieBaseRemoteDataSource extends BaseRemoteDataSource{
     {
       return List<MovieModel>.from((response.data["results"] as List).map((element) => MovieModel.fromJson(element))) ;
     }else{
-      return throw ServerException(errorNetworkModel: ErrorNetworkModel.fromJson(response.data));
+      throw ServerException(
+          errorMessageModel: ErrorMessageModel.fromJson(response.data)
+      );
     }
   }
 

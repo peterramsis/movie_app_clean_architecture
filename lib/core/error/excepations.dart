@@ -1,10 +1,10 @@
 import 'package:movies_clean/core/network/error_network_model.dart';
 
 class ServerException implements Exception{
-   final ErrorNetworkModel errorNetworkModel;
+   final ErrorMessageModel  errorMessageModel;
 
    ServerException({
-     required this.errorNetworkModel
+     required this.errorMessageModel
     });
 
 }
