@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_clean/core/services/ServicesLocator.dart';
 import 'package:movies_clean/movies/data/datasource/movie_remote_data_sorce.dart';
 import 'package:movies_clean/movies/data/repository/movie_repository.dart';
 import 'package:movies_clean/movies/domain/repository/base_movie_repository.dart';
@@ -9,6 +10,7 @@ import 'package:movies_clean/movies/presentation/controller/movie_event.dart';
 import 'package:movies_clean/movies/presentation/controller/movie_state.dart';
 
 void main() {
+  ServicesLocator().init();
   runApp(const MyApp());
 }
 
@@ -53,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(create: (context)=> MoviesBloc()..add(GetNowPlayingMoviesEvent()), child: Scaffold(
+    return BlocProvider(create: (context)=> MoviesBloc(sl())..add(GetNowPlayingMoviesEvent()), child: Scaffold(
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
