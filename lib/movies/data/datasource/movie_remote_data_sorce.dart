@@ -17,8 +17,7 @@ class MovieBaseRemoteDataSource extends BaseRemoteDataSource{
   {
 
     final response = await Dio().get(AppConstance.getPlayingMovie);
-    print("-------------");
-      print(response.statusCode);
+
 
     if(response.statusCode == 200)
     {
@@ -32,6 +31,7 @@ class MovieBaseRemoteDataSource extends BaseRemoteDataSource{
 
   @override
   Future<List<MovieModel>> getPopularMovies() async{
+
     final response = await Dio().get(AppConstance.getPopularMovie);
     if(response.statusCode == 200)
     {

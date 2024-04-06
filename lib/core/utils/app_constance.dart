@@ -4,4 +4,6 @@ class AppConstance{
   static String getPlayingMovie = '${baseUrl}now_playing?language=en-US&page=1&api_key=$apiKey';
   static String getPopularMovie = '${baseUrl}popular?language=en-US&page=1&api_key=$apiKey';
   static String getTopRatedMovie = '${baseUrl}top_rated?language=en-US&page=1&api_key=$apiKey';
+  static String pathImage = "https://image.tmdb.org/t/p/w500/";
+  static imageUrl(String img) => "$pathImage/$img";
 }
