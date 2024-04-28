@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:movies_clean/core/error/excepations.dart';
 import 'package:movies_clean/core/error/failure.dart';
+import 'package:movies_clean/core/usecase/base_movies_use_case.dart';
 
 import 'package:movies_clean/movies/data/datasource/movie_remote_data_sorce.dart';
 import 'package:movies_clean/movies/domain/enities/movie.dart';
+import 'package:movies_clean/movies/domain/enities/movie_details.dart';
 import 'package:movies_clean/movies/domain/repository/base_movie_repository.dart';
 
 class MovieRepository extends BaseMovieRepository{
@@ -37,6 +39,16 @@ class MovieRepository extends BaseMovieRepository{
   Future<Either<Failure, List<Movie>>> getTopRatedMovies() async{
     final result = await baseRemoteDataSource.getTopRatedMovies();
 
+    try{
+      return Right(result);
+    }on ServerException catch (failure){
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MovieDetail>> getMovieDetail(MovieDetailsParameters parameters) async{
+    final result = await baseRemoteDataSource.getMovieDetails(parameters);
     try{
       return Right(result);
     }on ServerException catch (failure){
