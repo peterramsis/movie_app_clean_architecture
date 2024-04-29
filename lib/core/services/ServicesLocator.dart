@@ -7,12 +7,14 @@ import 'package:movies_clean/movies/domain/usecase/get_now_playing_usecase.dart'
 import 'package:movies_clean/movies/domain/usecase/get_popular_movies_usecase.dart';
 import 'package:movies_clean/movies/domain/usecase/get_top_rated_movies_usecase.dart';
 import 'package:movies_clean/movies/presentation/controller/movie_bloc.dart';
+import 'package:movies_clean/movies/presentation/controller/movie_details_bloc.dart';
 
 final sl = GetIt.instance;
 class ServicesLocator{
   void init(){
 
     sl.registerLazySingleton(() => MoviesBloc(sl(),sl(),sl()));
+    sl.registerLazySingleton(() => MoviesDetailBloc(sl()));
 
     sl.registerLazySingleton(() => GetTopRatedMovieUseCase(sl()));
 
